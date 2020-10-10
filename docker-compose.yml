@@ -4,7 +4,7 @@ services:
   server:
     env_file:
       - .env
-    image: python:3.8.5
+    image: python:3.8.5  # Let's update to 3.9 ASAP
     working_dir: /mnt
     volumes:
       - .:/mnt
@@ -12,14 +12,21 @@ services:
       - db
     ports:
       - 3000:3000
-    command: python src/server.py
+    command: python server.py
 
   dbdata:
     image: busybox
     volumes:
+      - ./scripts/postgres:/docker-entrypoint-initdb.d/
       - /var/lib/postgresql/data
+
   db:
-    image: postgres:9.4
+    image: postgres:13.0
+    environment:
+        APPLICATION_POSTGRES_DB: ${APPLICATION_POSTGRES_DB}
+        APPLICATION_POSTGRES_USER: ${APPLICATION_POSTGRES_USER}
+        APPLICATION_POSTGRES_PW: ${APPLICATION_POSTGRES_PW}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} # for postgers user
     volumes_from:
       - dbdata
 

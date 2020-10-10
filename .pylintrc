@@ -1,0 +1,27 @@
+[REPORTS]
+output-format=colorized
+
+[MESSAGES CONTROL]
+
+disable=bad-continuation,
+        import-outside-toplevel,
+        too-few-public-methods,
+        unnecessary-lambda
+
+[BASIC]
+good-names=d,
+           e,
+           i,
+           j,
+           k,
+           n,
+           p,
+           v,
+           x,
+           y,
+           _,
+           T,
+           U,
+           db,
+           log,
+           logger

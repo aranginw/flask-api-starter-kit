@@ -21,3 +21,6 @@ server.logs: ## Display server logs
 
 server.upgrade: ## Upgrade pip dependencies
 	docker-compose run --rm server bash -c "python vendor/bin/pip-upgrade requirements.txt requirements-dev.txt --skip-virtualenv-check"
+
+server.nuke:  ## Destroy everything.
+	docker-compose down -v --remove-orphans

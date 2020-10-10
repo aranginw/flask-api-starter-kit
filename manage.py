@@ -3,7 +3,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 import config
-from models import db
+from infrastructure.orm import db
 
 server = Flask(__name__)
 server.debug = config.DEBUG

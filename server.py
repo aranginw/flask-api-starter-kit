@@ -3,8 +3,8 @@ from flask import Flask
 from flask.blueprints import Blueprint
 
 import config
-import routes
-from models import db
+import infrastructure.routes as routes
+from infrastructure.orm import db
 
 # config your API specs
 # you can define multiple specs in the case your api has multiple versions
@@ -33,7 +33,9 @@ Swagger(server)
 
 server.debug = config.DEBUG
 server.config["SQLALCHEMY_DATABASE_URI"] = config.DB_URI
-server.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = config.SQLALCHEMY_TRACK_MODIFICATIONS
+server.config[
+    "SQLALCHEMY_TRACK_MODIFICATIONS"
+] = config.SQLALCHEMY_TRACK_MODIFICATIONS
 db.init_app(server)
 db.app = server
 
